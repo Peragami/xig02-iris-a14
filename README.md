@@ -4,6 +4,14 @@ Lightweight LineageOS 21 (Android 14) for Redmi Note 10 JE (XIG02 / iris)
 
 Redmi Note 10 JE（型番 XIG02、au版、コードネーム iris）専用の、軽量で端末に最適化した Android 14 カスタムROMプロジェクト。
 
+## 最優先の3本柱
+
+このプロジェクトでは、以下の3点を最優先とする。他の機能追加や上位バージョン実験は、この3点を損なう場合は採用しない。
+
+1. **安全** — 文鎮化リスクを最小化する。復旧手段とバックアップが無い状態では焼かない（[docs/safety.md](docs/safety.md)）
+2. **軽量** — 実重量（メモリ・常駐・ストレージ）と体感（アニメーション・描画・アプリ切替）の両方を軽くする（[docs/tuning.md](docs/tuning.md)）
+3. **省電力** — バックグラウンド消費と画面消費を抑える。体感の軽さと両立する手段を優先し、トレードオフがあるものは適応型にする（[docs/tuning.md](docs/tuning.md)）
+
 ## 対象端末
 
 | 項目 | 内容 |
@@ -33,7 +41,7 @@ Redmi Note 10 JE（型番 XIG02、au版、コードネーム iris）専用の、
 - ブートローダーアンロック解禁目安: 2026-11-25 11:09頃（168時間待ちの場合。正確な残り時間は Mi Unlock Tool の表示で確認）
 - アンロック待ちの間に、device tree の精査と不足分のリスト化を進める
 
-進め方は [docs/roadmap.md](docs/roadmap.md)、アンロック手順は [docs/unlock.md](docs/unlock.md) を参照。
+進め方は [docs/roadmap.md](docs/roadmap.md)、アンロック手順は [docs/unlock.md](docs/unlock.md)、安全ルールは [docs/safety.md](docs/safety.md)、軽量・省電力の調整は [docs/tuning.md](docs/tuning.md) を参照。
 
 ## 注意
 
