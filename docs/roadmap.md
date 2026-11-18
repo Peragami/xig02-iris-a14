@@ -28,6 +28,7 @@
 
 ## Phase 2: LineageOS 21 専用ビルド
 
+- [ ] ビルド環境を決める（未決定・検討中）。候補の筆頭は Google Cloud 無料トライアル（$300／90日、自動課金なし）で十分なスペックの VM を借りる案。ノートPC（RAM 16GB／空き304GB）は容量ギリギリ、メインPCとむぜのVMは不可。GitHub Actions はディスク14GBで不可。決まれば実機ダンプ前にソース同期（100GB超）を先行できる
 - [ ] 土台は rabin device tree + Seifood vendor（LOS20到達実績あり）とし、turbo-boo ツリーから設定値・構成（blobs リスト、AVB、VINTF、sepolicy 等）を移植する（turbo の .26 前提の値は .23 用に読み替える）
 - [ ] カーネルは公式ソース未公開のため、実機 V14.0.23.0 のダンプから取り出した prebuilt（kernel / DTB / DTBO / vendor モジュール）を分離管理する（turbo の iris-kernel 方式を .23 で行う）
 - [ ] blobs を実機 V14.0.23.0 のダンプから抽出し、SPL を 2024-04-01 に一致させる
