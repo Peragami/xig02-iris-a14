@@ -1,0 +1,27 @@
+# Build output
+out/
+build/
+.repo/
+.ccache/
+vendor/
+*.img
+*.img.gz
+*.bin
+*.zip
+*.tgz
+*.tar.gz
+
+# Stock ROM / dumps (never commit ROM images or dumps)
+stock/
+dump/
+backup/
+*.mbn
+*.elf
+
+# Local / editor
+*.swp
+*~
+.DS_Store
+.idea/
+.vscode/
+*.log
