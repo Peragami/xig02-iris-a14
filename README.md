@@ -21,7 +21,7 @@ Redmi Note 10 JE（型番 XIG02、au版、コードネーム iris）専用の、
 | コードネーム | iris |
 | SoC | Qualcomm Snapdragon 480 5G |
 | RAM / ROM | 4GB / 64GB |
-| 公式最終版 | MIUI Global 14.0.23.0 (TKRJPKD) / Android 13 |
+| 実機の現在版 | MIUI Global 14.0.23.0 (TKRJPKD) / Android 13（キャリア最新は 14.0.26.0） |
 
 詳しくは [docs/device.md](docs/device.md) を参照。
 

@@ -9,7 +9,8 @@
 - [x] Mi Unlock status への紐付け成功（2026-11-18）
 - [ ] iris device tree の精査（ベースの LineageOS 版、カーネル、vendor 構成）
 - [ ] LineageOS 21 移植に不足するもののリスト化
-- [ ] 復旧用 Fastboot ROM（14.0.23.0 用）の確保とハッシュ確認（[docs/safety.md](safety.md) の絶対ルール。これが済むまで焼く工程には進まない）
+- [x] 復旧用ROMの調査（2026-11-18）: 公式 Fastboot ROM は存在しないことが判明。有志版は最新 V14.0.21.0 で製作者の警告付き。詳細は research/stock-rom-findings.md
+- [ ] 復旧方針の切り替え: 自前フルダンプを本線とする手順の設計（[docs/safety.md](safety.md)）。有志ROMの使える範囲の切り分けと、アンロック前にキャリア最新 14.0.26.0 へ上げるかの判断もここでする
 - [ ] 端末データのバックアップ（アンロックで全消去される）
 
 待ち期間中の条件: Miアカウントをサインアウトしない、端末を初期化しない。
@@ -17,7 +18,7 @@
 ## Phase 1: アンロックと動作棚卸し
 
 - [ ] Mi Unlock Tool で残り時間を確認し、アンロックを実行
-- [ ] 何も焼く前に persist / modemst1・2 / fsg / boot / dtbo / vbmeta をバックアップする（safety.md の必須バックアップ）
+- [ ] 何も焼く前に全パーティションのフルダンプを取る（super、persist、modemst1・2、fsg、boot、dtbo、vbmeta 等。safety.md の必須バックアップ。これが復旧の本線）
 - [ ] 最初の試行は DSU / `fastboot boot` の一時起動で行い、書き込まない状態で確認する
 - [ ] 専用ROMを焼く前に、GSI（Android 14）での試し焼きも選択肢として検討
 - [ ] 起動 / Wi-Fi / カメラ / 指紋 / モバイル通信（au）/ 音声 / 充電 の動作を棚卸し
