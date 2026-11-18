@@ -157,7 +157,7 @@
 - .23 純正カーネルの版数（5.4 系のどこか）と CONFIG_USERFAULTFD の有無。当日ダンプ後に確認。
 - .23 と .26 の blobs 差分（ファイルの増減）。ダンプ後に proprietary-files.txt と突き合わせて確定する。
 - 実機 .23 の fingerprint 文字列（BuildDesc のビルド ID 部分が TKQ1.220905.001 で同一か）。当日 getprop で確認。
-- twrp-3.7.0_12-2-iris.zip の中身（boot.img 同梱の有無）と実機動作（タッチ等）。未ダウンロードのため未確認。
+- twrp-3.7.0_12-2-iris.zip の実機動作（タッチ等）。中身は 2026-11-18 に取得・確認済み：単体の boot image（twrp-3.7.0_12-2-iris.img、128MiB、header v3、SHA256: 2f35cdb1409357a9898aedad5e658983acf688bb333839c22d3ed66661033171）で、`fastboot boot` で使える形式だった。refs/recovery/ に保管済み。残る未確認は実機での起動・タッチ動作のみ。
 - LOS21 世代の hardware/qcom-caf に sm8350 audio や各 AIDL HAL が揃っているか。ビルド環境（lineage-21 のツリー一式）を用意した時点で判明する。
 - Seifood の LOS20 ビルドで使われた device tree の実体（監査メモから継続の未確認事項）。
 - turbo ツリーは未ビルド・未起動（README 明記）のため、その設定値の正しさ自体が実績に裏付けられていない。移植後に動かない箇所が出る前提で、rabin / LOS20 世代の構成との差分比較ができる状態を保つ。

@@ -45,9 +45,9 @@
 ### 4. リカバリの一時起動
 
 - `fastboot boot <recovery.img>` で **書き込まずに** リカバリを一時起動する
-- iris 用の既製品リカバリは公式 TWRP / OrangeFox には無く、唯一の候補は SourceForge「redmi-note-10-je-xig02」の **twrp-3.7.0_12-2-iris.zip**（research/bringup-plan.md）。インストーラ zip 形態のため、当日はまず中身を確認する：
-  1. zip 内に boot.img があれば、それを `fastboot boot` に使う
-  2. boot.img が無い（既存リカバリへのパッチ専用）場合は独断で進めず、代替（ビルドした Lineage recovery 等）の判断を仰ぐ
+- iris 用の既製品リカバリは公式 TWRP / OrangeFox には無く、唯一の候補は SourceForge「redmi-note-10-je-xig02」の **twrp-3.7.0_12-2-iris.zip**（research/bringup-plan.md）
+- **2026-11-18 に取得・検証済み**：zip の中身は単体の `twrp-3.7.0_12-2-iris.img`（128MiB、Android boot image・header v3、SHA256: 2f35cdb1409357a9898aedad5e658983acf688bb333839c22d3ed66661033171）。`fastboot boot` でそのまま使える形式。ファイルは手元（refs/recovery/）に保管済みで、当日までに PC へコピーする
+  - 当日、万が一起動しない場合は独断で進めず、代替（ビルドした Lineage recovery 等）の判断を仰ぐ
 - リカバリ上で `adb devices` が recovery として見えることを確認
 - ついでに実機 GPT に **vendor_boot があるか** を確認する（`ls /dev/block/by-name` の結果で分かる。ビルド方式の分岐条件。bringup-plan.md 参照）
 
