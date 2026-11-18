@@ -1,0 +1,10 @@
+from		to		downloadurl
+V12.5.12	full		https://android.googleapis.com/packages/ota-api/package/3c7c5d56651f43a14a78b8254200eba6b61b33f2.zip
+V12.5.12	V12.5.14	https://android.googleapis.com/packages/ota-api/package/bee803f7f038709cdc8c3a26a1ab74bbd44a2df6.zip
+V13.0.10	full		https://android.googleapis.com/packages/ota-api/package/b7e1f33058a52649a1690dac9f68a3a0ca6e37ab.zip
+V14.0.4		full		https://android.googleapis.com/packages/ota-api/package/79e7606446dcf23374147d6aa4ecdf2c942582ee.zip
+v14.0.22	full		https://ota.googlezip.net/packages/ota-api/package/3802f627668a5bccc99902bea3e3febd77e7a2ca.zip
+		
+		
+		
+V13.0.9		full		https://android.googleapis.com/packages/ota-api/package/4d70879c728ff5af9b5642e1fa66c2264bfec046.zip
