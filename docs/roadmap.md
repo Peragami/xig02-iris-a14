@@ -9,8 +9,8 @@
 - [x] Mi Unlock status への紐付け成功（2026-11-18）
 - [x] iris device tree の精査（2026-11-18）: 源流は rabin-tech/device_xiaomi_iris（LOS19.1世代相当）。Seifood は vendor tree のみ（lineage-20、blobs は V13.0.9.0）。最も新しい turbo-boo のツリーは LOS23.2/24 専用で LOS21 には使えず、部品取り・設計の手本とする。詳細は research/device-tree-audit.md
 - [x] LineageOS 21 移植に不足するもののリスト化（同レポートに記載。blobs再抽出、カーネルprebuilt分離、sepolicy新設、VINTF更新、AVB明示設定 等）
-- [ ] 実機をキャリア最新 V14.0.26.0 へ OTA 更新する（blobs再抽出と SPL 2024-08-01 一致の前提。turbo の prebuilt カーネルも .26 純正が前提。更新後も Miアカウントはサインアウトしない）
-  - 2026-11-18 時点でインストールエラーにより未達。原因は product パーティション読み出し時の I/O エラーと特定済み（research/ota-install-error.md）。更新状態のリセット→初回適用を試し、ダメならアンロック後に切り分ける
+- [x] 実機の V14.0.26.0 への OTA 更新は **断念**（2026-11-18 確定）。状態リセット後の完全な初回適用でも product の同一箇所（extent [481373, 512]）の読み出し I/O エラーで失敗し、領域の読み出し異常と判定（research/ota-install-error.md）。初期化も product には効果がないため行わない
+  - 代替として **V14.0.23.0 を土台にするプランB** に切り替え済み（Phase 2 参照）
 - [x] 復旧用ROMの調査（2026-11-18）: 公式 Fastboot ROM は存在しないことが判明。有志版は最新 V14.0.21.0 で製作者の警告付き。詳細は research/stock-rom-findings.md
 - [ ] 復旧方針の切り替え: 自前フルダンプを本線とする手順の設計（[docs/safety.md](safety.md)）。有志ROMの使える範囲の切り分けもここでする（14.0.26.0 へ上げる件は device tree 精査の結果から「上げる」で確定）
 - [ ] 端末データのバックアップ（アンロックで全消去される）
@@ -21,15 +21,16 @@
 
 - [ ] Mi Unlock Tool で残り時間を確認し、アンロックを実行
 - [ ] 何も焼く前に全パーティションのフルダンプを取る（super、persist、modemst1・2、fsg、boot、dtbo、vbmeta 等。safety.md の必須バックアップ。これが復旧の本線）
+- [ ] OTA失敗の既知箇所（product の一部領域）の生読み出しテストをリカバリ経由で行い、dmesg でストレージ側のエラーを確認する
 - [ ] 最初の試行は DSU / `fastboot boot` の一時起動で行い、書き込まない状態で確認する
 - [ ] 専用ROMを焼く前に、GSI（Android 14）での試し焼きも選択肢として検討
 - [ ] 起動 / Wi-Fi / カメラ / 指紋 / モバイル通信（au）/ 音声 / 充電 の動作を棚卸し
 
 ## Phase 2: LineageOS 21 専用ビルド
 
-- [ ] 土台は rabin device tree + Seifood vendor（LOS20到達実績あり）とし、turbo-boo ツリーから設定値・構成（.26 blobs リスト、AVB、VINTF、sepolicy 等）を移植する
-- [ ] カーネルは公式ソース未公開のため、純正 V14.0.26.0 の prebuilt（kernel / DTB / DTBO / vendor モジュール）を分離管理する（turbo の iris-kernel 方式）
-- [ ] blobs を V14.0.26.0 から再抽出し、SPL を 2024-08-01 に一致させる
+- [ ] 土台は rabin device tree + Seifood vendor（LOS20到達実績あり）とし、turbo-boo ツリーから設定値・構成（blobs リスト、AVB、VINTF、sepolicy 等）を移植する（turbo の .26 前提の値は .23 用に読み替える）
+- [ ] カーネルは公式ソース未公開のため、実機 V14.0.23.0 のダンプから取り出した prebuilt（kernel / DTB / DTBO / vendor モジュール）を分離管理する（turbo の iris-kernel 方式を .23 で行う）
+- [ ] blobs を実機 V14.0.23.0 のダンプから抽出し、SPL を 2024-04-01 に一致させる
 - [ ] 最小限の Google アプリ（Play 3点セット）を組み込み
 - [ ] 実機で基本動作を確認
 
