@@ -10,6 +10,7 @@
 - [x] iris device tree の精査（2026-11-18）: 源流は rabin-tech/device_xiaomi_iris（LOS19.1世代相当）。Seifood は vendor tree のみ（lineage-20、blobs は V13.0.9.0）。最も新しい turbo-boo のツリーは LOS23.2/24 専用で LOS21 には使えず、部品取り・設計の手本とする。詳細は research/device-tree-audit.md
 - [x] LineageOS 21 移植に不足するもののリスト化（同レポートに記載。blobs再抽出、カーネルprebuilt分離、sepolicy新設、VINTF更新、AVB明示設定 等）
 - [ ] 実機をキャリア最新 V14.0.26.0 へ OTA 更新する（blobs再抽出と SPL 2024-08-01 一致の前提。turbo の prebuilt カーネルも .26 純正が前提。更新後も Miアカウントはサインアウトしない）
+  - 2026-11-18 時点でインストールエラーにより未達。原因は product パーティション読み出し時の I/O エラーと特定済み（research/ota-install-error.md）。更新状態のリセット→初回適用を試し、ダメならアンロック後に切り分ける
 - [x] 復旧用ROMの調査（2026-11-18）: 公式 Fastboot ROM は存在しないことが判明。有志版は最新 V14.0.21.0 で製作者の警告付き。詳細は research/stock-rom-findings.md
 - [ ] 復旧方針の切り替え: 自前フルダンプを本線とする手順の設計（[docs/safety.md](safety.md)）。有志ROMの使える範囲の切り分けもここでする（14.0.26.0 へ上げる件は device tree 精査の結果から「上げる」で確定）
 - [ ] 端末データのバックアップ（アンロックで全消去される）
