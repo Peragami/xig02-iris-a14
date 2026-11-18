@@ -18,6 +18,9 @@ backup/
 *.mbn
 *.elf
 
+# Reference trees (cloned upstream repos, never commit)
+refs/
+
 # Local / editor
 *.swp
 *~

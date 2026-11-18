@@ -12,14 +12,14 @@
 - [x] 実機の V14.0.26.0 への OTA 更新は **断念**（2026-11-18 確定）。状態リセット後の完全な初回適用でも product の同一箇所（extent [481373, 512]）の読み出し I/O エラーで失敗し、領域の読み出し異常と判定（research/ota-install-error.md）。初期化も product には効果がないため行わない
   - 代替として **V14.0.23.0 を土台にするプランB** に切り替え済み（Phase 2 参照）
 - [x] 復旧用ROMの調査（2026-11-18）: 公式 Fastboot ROM は存在しないことが判明。有志版は最新 V14.0.21.0 で製作者の警告付き。詳細は research/stock-rom-findings.md
-- [ ] 復旧方針の切り替え: 自前フルダンプを本線とする手順の設計（[docs/safety.md](safety.md)）。有志ROMの使える範囲の切り分けもここでする（14.0.26.0 へ上げる件は device tree 精査の結果から「上げる」で確定）
+- [x] 復旧方針の切り替え: 自前フルダンプを本線とする手順を設計済み（[docs/safety.md](safety.md)、当日の手順は docs/unlock-day.md、ダンプは tools/dump-partitions.bat / .sh）。有志ROMはフル復旧には使わず、切り分け用途に限定する
 - [ ] 端末データのバックアップ（アンロックで全消去される）
 
 待ち期間中の条件: Miアカウントをサインアウトしない、端末を初期化しない。
 
 ## Phase 1: アンロックと動作棚卸し
 
-- [ ] Mi Unlock Tool で残り時間を確認し、アンロックを実行
+- [ ] Mi Unlock Tool で残り時間を確認し、アンロックを実行（当日の手順書： docs/unlock-day.md）
 - [ ] 何も焼く前に全パーティションのフルダンプを取る（super、persist、modemst1・2、fsg、boot、dtbo、vbmeta 等。safety.md の必須バックアップ。これが復旧の本線）
 - [ ] OTA失敗の既知箇所（product の一部領域）の生読み出しテストをリカバリ経由で行い、dmesg でストレージ側のエラーを確認する
 - [ ] 最初の試行は DSU / `fastboot boot` の一時起動で行い、書き込まない状態で確認する
