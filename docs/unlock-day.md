@@ -30,7 +30,7 @@
 ### 2. アンロック実行
 
 1. 端末を fastboot モードで起動し、USB 接続
-2. `fastboot devices` と `fastboot getvar product` で **product が iris** であることを確認
+2. `fastboot devices` と `fastboot getvar product` で端末を確認する。**product は iris ではなく型番の XIG02 と返るのが正常**（2026-11-25 実機確認。ブートローダーはコードネームを返さない）
 3. Mi Unlock Tool でアンロックを実行する
    - 途中でケーブルを抜かない、PC をスリープさせない
    - **再ロックは絶対にしない**（safety.md）
@@ -92,7 +92,7 @@ OTA が失敗した箇所（product の一部領域、extent [481373, 512]）に
 
 以下のいずれかで作業を止めて相談する：
 
-- product が iris でない
+- product が iris でも XIG02 でもない
 - 電池が 50% を切っている
 - ダンプの検証が通らない
 - 想定外のエラー表示・端末の異常発熱

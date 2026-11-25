@@ -20,7 +20,8 @@ rem   dump against manifest.txt and prints the flash plan.
 rem   With WRITE it flashes after a typed confirmation.
 rem
 rem Safety rules (docs/restore.md, safety.md):
-rem   - Aborts unless fastboot reports product = iris.
+rem   - Aborts unless fastboot reports product = iris or XIG02
+rem     (this device's bootloader returns the model name XIG02).
 rem   - Aborts if any file is missing, size differs, or its
 rem     SHA256 does not match manifest.txt.
 rem   - Logical partitions (system, system_ext, product,
@@ -57,11 +58,14 @@ if errorlevel 1 (
 )
 set PROD=
 for /f "tokens=2 delims= " %%V in ('fastboot getvar product 2^>^&1 ^| findstr /b "product:"') do set PROD=%%V
-if /i not "%PROD%"=="iris" (
-  echo [ABORT] product is "%PROD%", not iris. Wrong device.
-  exit /b 1
-)
-echo Device check OK: product = iris
+rem NOTE: this device's bootloader returns the model name "XIG02",
+rem not the codename "iris" (verified on the real device 2026-11-25).
+if /i "%PROD%"=="iris" goto :prod_ok
+if /i "%PROD%"=="XIG02" goto :prod_ok
+echo [ABORT] product is "%PROD%", not iris/XIG02. Wrong device.
+exit /b 1
+:prod_ok
+echo Device check OK: product = %PROD%
 
 rem --- dump read-error scan ------------------------------------
 set WARNDUMP=0

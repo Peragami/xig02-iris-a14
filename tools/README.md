@@ -17,7 +17,7 @@
 
 - 既定はドライラン：manifest とのサイズ・SHA256 照合と書き込み計画の表示のみで、書き込まない
 - 書き込みは引数に `WRITE` を付けた場合のみ。確認入力も必要
-- product = iris チェック、super が manifest に無い場合は中断、ダンプ内に読み出しエラー（*.dd.log）がある場合は追加警告＋強い確認入力
+- product チェック（iris / XIG02 のどちらか。実機のブートローダーは型番 XIG02 を返す）、super が manifest に無い場合は中断、ダンプ内に読み出しエラー（*.dd.log）がある場合は追加警告＋強い確認入力
 - 論理パーティション（system / system_ext / product / vendor / odm）は super に含まれるため個別には焼かない
 - **ブートローダーの再ロックは絶対にしない**（公式 Fastboot ROM が無い機種のため）
 

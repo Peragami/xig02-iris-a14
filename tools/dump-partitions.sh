@@ -58,12 +58,15 @@ while IFS= read -r P; do
   fi
 
   DEV="/dev/block/by-name/$P"
-  PSIZE="$(adb shell "blockdev --getsize64 $DEV" 2>/dev/null | tr -d ' \r')"
+  # NOTE: adb inside a while-read loop must not share the loop's
+  # stdin (it would swallow the remaining by-name lines), so every
+  # adb call in this loop gets < /dev/null.
+  PSIZE="$(adb shell "blockdev --getsize64 $DEV" 2>/dev/null < /dev/null | tr -d ' \r')"
   [ -n "$PSIZE" ] || PSIZE="unknown"
 
   echo "Dumping $P (partition bytes: $PSIZE) ..."
   if ! adb exec-out dd if="$DEV" bs=4096 conv=noerror,sync \
-       > "$OUT/$P.img" 2> "$OUT/$P.dd.log"; then
+       > "$OUT/$P.img" 2> "$OUT/$P.dd.log" < /dev/null; then
     echo "[WARN] dd returned an error for $P - see $P.dd.log"
   fi
 

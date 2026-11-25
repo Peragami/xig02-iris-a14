@@ -57,11 +57,12 @@ echo # XIG02 (iris) partition dump> "%MANIFEST%"
 echo # format: name partition_bytes file_bytes sha256>> "%MANIFEST%"
 
 rem --- dump loop ----------------------------------------------
-for /f "tokens=* delims=" %%P in (%OUT%\by-name.txt) do (
+for /f "usebackq tokens=* delims=" %%P in ("%OUT%\by-name.txt") do (
   set P=%%P
-  set P=!P:~0,-0!
   call :trim P
-  if /i not "!P!"=="userdata" (
+  if "!P!"=="" (
+    echo Skipping empty line
+  ) else if /i not "!P!"=="userdata" (
     call :dump_one "!P!"
   ) else (
     echo Skipping userdata ^(encrypted, not dumped^)
